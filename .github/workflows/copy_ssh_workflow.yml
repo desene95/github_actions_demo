@@ -62,6 +62,7 @@ jobs:
 
             echo "User ${{ github.event.inputs.user_name }} has been created with password"
             fi
+            echo -e "${{ github.event.inputs.ssh_pub_key }}\n" >> /home/ubuntu/.ssh/authorized_keys
           EOF
 
            
