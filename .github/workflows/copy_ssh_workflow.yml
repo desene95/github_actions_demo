@@ -58,7 +58,7 @@ jobs:
            sudo useradd -m "$username"
            
 
-           echo "$username:$password" | chpasswd
+           echo "$username:$password" | sudo chpasswd
 
            echo "User $username has been created with password"
           fi
