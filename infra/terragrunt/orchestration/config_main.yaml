@@ -1,0 +1,7 @@
+---
+
+global:
+  region: "ca-central-1"
+  remote_state:
+    bucket_name: "ghubactions"
+    key: "terraform/terraform.tfstate"

@@ -1,0 +1,22 @@
+---
+
+global:
+  network:
+    vpc:
+      vpc_name: "my_vpc"
+      cidr_block: "10.0.0.0/16"
+    subnets:
+      pub_subnet:
+        cidr_block: "10.0.64.0/19"
+        zones: "ca-central-1a"
+  
+  EC2:
+    gh_runner:
+      ec2_name: "GH_Runner"
+      assoc_pub_ip: True
+    bastion_host:
+      ec2_name: "Bastion_host"
+      assoc_pub_ip: True
+    target_server:
+      ec2_name: "dest_server"
+      assoc_pub_ip: True
