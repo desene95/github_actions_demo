@@ -49,19 +49,20 @@ jobs:
       - name: create new user
         run: |
           #!/bin/bash
-          ssh ubuntu@10.0.64.122
-          username=${{ github.event.inputs.user_name }}
-          password=${{ github.event.inputs.password }}
-          if id "$username" &>/dev/null; then
-            echo "User already exists"
-          else
-           sudo useradd -m "$username"
-           
+          ssh ubuntu@10.0.64.122<<EOF
+            username=${{ github.event.inputs.user_name }}
+            password=${{ github.event.inputs.password }}
+            if id "$username" &>/dev/null; then
+              echo "User already exists"
+            else
+            sudo useradd -m "$username"
+            
 
-           echo "$username:$password" | sudo chpasswd
+            echo "$username:$password" | sudo chpasswd
 
-           echo "User $username has been created with password"
-          fi
+            echo "User $username has been created with password"
+            fi
+          EOF
 
            
 
