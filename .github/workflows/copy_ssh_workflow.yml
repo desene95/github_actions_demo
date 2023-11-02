@@ -5,10 +5,10 @@ name: Copy ssh keys
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  #push:
+    #branches: [ "main" ]
+  #pull_request:
+    #branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -35,7 +35,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: ssh to bastion server
-        run: ssh ubuntu@ec2-3-99-190-82.ca-central-1.compute.amazonaws.com
+        run: ssh ubuntu@10.0.79.165
 
       # Runs a set of commands using the runners shell
       #- name: Run a multi-line script
