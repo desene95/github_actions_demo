@@ -1,0 +1,6 @@
+#check is user exists
+cat /etc/passwd
+
+#Add user
+useradd -m $username
+

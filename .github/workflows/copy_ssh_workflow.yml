@@ -19,6 +19,9 @@ on:
       ssh_pub_key:
         description: Your public key
         required: true
+      password:
+        description: User password
+        required: true
       
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -36,7 +39,7 @@ jobs:
       # Runs a single command using the runners shell
 
       - name: ssh to target server
-        run: ssh ubuntu@e10.0.64.122
+        run: ssh ubuntu@10.0.64.122
   create_user:
     runs-on: self-hosted
 
@@ -46,13 +49,21 @@ jobs:
       - name: create new user
         run: |
           #!/bin/bash
+          ssh ubuntu@10.0.64.122
           username=${{ github.event.inputs.user_name }}
+          password=${{ github.event.inputs.password }}
           if id "$username" &>/dev/null; then
             echo "User already exists"
           else
            sudo useradd -m "$username"
-           echo "User $username has been created"
+           
+
+           echo "$username:$password" | chpasswd
+
+           echo "User $username has been created with password"
           fi
+
+           
 
 
       # Runs a set of commands using the runners shell
