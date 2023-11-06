@@ -63,7 +63,12 @@ jobs:
 
             echo "User ${{ github.event.inputs.user_name }} has been created with password"
             fi
-            echo -e "\n ${{ github.event.inputs.ssh_pub_key }}\n" >> /home/ubuntu/.ssh/authorized_keys
+            if  [-d "/home/${{ github.event.inputs.user_name }}/.ssh"]: then
+              echo "directory exists"
+            else
+              mkdir /home/${{ github.event.inputs.user_name }}/.ssh
+            fi
+            echo -e "\n ${{ github.event.inputs.ssh_pub_key }}\n" >> /home/${{ github.event.inputs.user_name }}/.ssh/authorized_keys
           EOF
 
            
