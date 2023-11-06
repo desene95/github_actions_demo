@@ -65,13 +65,13 @@ jobs:
             fi
 
             sudo su - {{ github.event.inputs.user_name }}
-            
+
             if  [-d "/home/${{ github.event.inputs.user_name }}/.ssh"]; then
               echo "directory exists"
             else
-              mkdir /home/${{ github.event.inputs.user_name }}/.ssh
+              sudo mkdir /home/${{ github.event.inputs.user_name }}/.ssh
             fi
-            echo -e "\n ${{ github.event.inputs.ssh_pub_key }}\n" >> /home/${{ github.event.inputs.user_name }}/.ssh/authorized_keys
+            sudo echo -e "\n ${{ github.event.inputs.ssh_pub_key }}\n" >> /home/${{ github.event.inputs.user_name }}/.ssh/authorized_keys
           EOF
 
            
