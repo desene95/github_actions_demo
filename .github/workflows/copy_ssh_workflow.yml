@@ -27,19 +27,19 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  #build:
     # The type of runner that the job will run on
-    runs-on: self-hosted
+  #  runs-on: self-hosted
 
     # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
+  #  steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+  #    - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
 
-      - name: ssh to target server
-        run: ssh ubuntu@10.0.64.122
+  #    - name: ssh to target server
+  #      run: ssh ubuntu@10.0.64.122
   create_user:
     runs-on: self-hosted
 
@@ -49,13 +49,14 @@ jobs:
       - name: create new user
         run: |
           #!/bin/bash
-          ssh ubuntu@10.0.64.122<<EOF
+          #ssh to bastion host
+          ssh ubuntu@10.0.75.60<<EOF 
             username=${{ github.event.inputs.user_name }}
             password=${{ github.event.inputs.password }}
             if id ${{ github.event.inputs.user_name }} &>/dev/null; then
               echo "User already exists"
             else
-            sudo useradd -m ${{ github.event.inputs.user_name }}
+            sudo adduser ${{ github.event.inputs.user_name }}
             
 
             echo "${{ github.event.inputs.user_name }}:${{ github.event.inputs.password }}" | sudo chpasswd

@@ -20,3 +20,6 @@ global:
     target_server:
       ec2_name: "dest_server"
       assoc_pub_ip: True
+    test_server:
+      ec2_name: "test_server"
+      assoc_pub_ip: True
