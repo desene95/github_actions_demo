@@ -63,7 +63,8 @@ jobs:
 
             echo "User ${{ github.event.inputs.user_name }} has been created with password"
             fi
-            if  [-d "/home/${{ github.event.inputs.user_name }}/.ssh"]: then
+
+            if  [-d "/home/${{ github.event.inputs.user_name }}/.ssh"]; then
               echo "directory exists"
             else
               mkdir /home/${{ github.event.inputs.user_name }}/.ssh
